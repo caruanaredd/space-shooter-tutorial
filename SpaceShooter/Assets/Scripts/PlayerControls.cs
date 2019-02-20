@@ -13,6 +13,12 @@ public class PlayerControls : MonoBehaviour
 	// The player's rotation speed.
 	public float torque = 360f;
 
+	// This is the location where the laser will be spawned.
+	public Transform laserTurret;
+
+	// This is the prefab/template for the laser.
+	public GameObject laser;
+
 	// A reference to the Rigidbody2D component.
 	private Rigidbody2D _playerRB;
 
@@ -36,6 +42,13 @@ public class PlayerControls : MonoBehaviour
 
 		// Will rotate the player.
 		transform.Rotate(Vector3.back * horz * torque * Time.deltaTime);
+
+		// If the space key was pressed.
+		if (Input.GetButtonDown("Submit"))
+		{
+			// Create a copy/instance of the laser.
+			Instantiate(laser, laserTurret.position, laserTurret.rotation);
+		}
 	}
 
 	// Use this every time we move things via Rigidbody

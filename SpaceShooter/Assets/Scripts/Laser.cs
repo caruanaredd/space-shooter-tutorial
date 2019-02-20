@@ -8,6 +8,9 @@ public class Laser : MonoBehaviour
     // Controls the lasers' speed.
     public float speed = 10f;
 
+    // The laser's lifetime.
+    public float lifetime = 2f;
+
     // A reference to the laser's rigidbody.
     private Rigidbody2D _bulletRB;
 
@@ -20,5 +23,21 @@ public class Laser : MonoBehaviour
     {
         _bulletRB.velocity =
             transform.TransformDirection(Vector2.up) * speed;
+        
+        // Destroy this object after a specific amount of time.
+        Destroy(gameObject, lifetime);
+    }
+
+    // When the last collides with other objects, we can
+    // handle what happens in the scene.
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
+        {
+            Destroy(other.gameObject);
+        }
+
+        // The laser should be destroyed if it hits anything.
+        Destroy(gameObject);
     }
 }
