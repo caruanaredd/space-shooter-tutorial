@@ -6,6 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Asteroid : MonoBehaviour
 {
+	// This will define what size asteroid we're on.
+	public int size;
+
+	// This is the amount of damage an asteroid will make.
+	public float damage = 5f;
+
 	// The Asteroid's movement speed.
 	public float speed = 1f;
 
@@ -33,5 +39,11 @@ public class Asteroid : MonoBehaviour
 		
 		_asteroidRB.AddTorque((Random.value - 0.5f) * torque,
 			ForceMode2D.Impulse);
+	}
+
+	// This method will standardize all asteroids' breaking.
+	public void Break()
+	{
+		Destroy(gameObject);
 	}
 }

@@ -19,6 +19,9 @@ public class PlayerControls : MonoBehaviour
 	// This is the prefab/template for the laser.
 	public GameObject laser;
 
+	// This is a reference to the player's exhaust object.
+	public GameObject exhaust;
+
 	// A reference to the Rigidbody2D component.
 	private Rigidbody2D _playerRB;
 
@@ -34,14 +37,16 @@ public class PlayerControls : MonoBehaviour
 	void Update()
 	{
 		// Will read the input on the Up/Down or W/S keys.
-		_direction = transform.TransformDirection(Vector2.up)
-			*  Input.GetAxis("Vertical");
+		_direction = transform.TransformDirection(Vector2.up) *  Input.GetAxis("Vertical");
 
 		// Will read the input on the Left/Right or A/D keys.
 		float horz = Input.GetAxis("Horizontal");
 
 		// Will rotate the player.
 		transform.Rotate(Vector3.back * horz * torque * Time.deltaTime);
+
+		// Will only show the exhaust if we press up/down.
+		exhaust.SetActive(Input.GetAxisRaw("Vertical") != 0f);
 
 		// If the space key was pressed.
 		if (Input.GetButtonDown("Submit"))

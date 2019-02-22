@@ -34,7 +34,10 @@ public class Laser : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Asteroids"))
         {
-            Destroy(other.gameObject);
+            // <Asteroid> is used to enforce the type of script we need.
+            Asteroid asteroid = other.gameObject.GetComponent<Asteroid>();
+
+            asteroid.Break();
         }
 
         // The laser should be destroyed if it hits anything.

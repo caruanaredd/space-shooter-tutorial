@@ -8,6 +8,7 @@ TextureImporter:
     21300006: BigAsteroid_2
     21300008: BigAsteroid_3
     21300010: BigAsteroid_4
+    21300012: PlayerExhaust
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -216,6 +217,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a6f80ac091dfe443a8b94b7a5405d185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerExhaust
+      rect:
+        serializedVersion: 2
+        x: 1011
+        y: 899
+        width: 11
+        height: 27
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bee58be19a18423aaa23597ff8f3165
       vertices: []
       indices: 
       edges: []
