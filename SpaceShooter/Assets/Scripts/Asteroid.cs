@@ -44,6 +44,11 @@ public class Asteroid : MonoBehaviour
 	// This method will standardize all asteroids' breaking.
 	public void Break()
 	{
+		AsteroidManager.main.GenerateChildren(
+			size,
+			transform.position,
+			GetComponent<Collider2D>().bounds.size
+		);
 		Destroy(gameObject);
 	}
 }

@@ -499,7 +499,17 @@ MonoBehaviour:
   - {fileID: 8631993031794699006, guid: 2ff8680c710784c09ac304fba7a15505, type: 3}
   - {fileID: 3062317796815193972, guid: 81ceb8014b7144cb5aaaa9f89d36acd5, type: 3}
   - {fileID: 719436402315060686, guid: a4ff1f1bd8d134d1e9cce5f6e4a5d9c0, type: 3}
+  mediumAsteroids:
+  - {fileID: 6497395009557764833, guid: 8d490e1cde16b4f0ca1bc162ff4f54d1, type: 3}
+  - {fileID: 5655257261423609643, guid: cc428427a2e584fc9bfb8a5afdf1d8dd, type: 3}
+  smallAsteroids:
+  - {fileID: 429095785597933933, guid: b0a9917e0fa5f4a7da8387d39d31a820, type: 3}
+  - {fileID: 1346353210412259151, guid: 504da3a0faff74a15a39b92c12fd0258, type: 3}
+  tinyAsteroids:
+  - {fileID: 5834652350688286729, guid: 0fe9887f1a6944f56b009fba442f62d7, type: 3}
+  - {fileID: 795613849145689419, guid: 7de46753ce31146d4b4008ccc70d0b68, type: 3}
   numAsteroids: 4
+  numChildren: 3
   excludeRadius: 2
 --- !u!1 &2037492934
 GameObject:
