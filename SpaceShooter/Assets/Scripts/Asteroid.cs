@@ -42,13 +42,21 @@ public class Asteroid : MonoBehaviour
 	}
 
 	// This method will standardize all asteroids' breaking.
-	public void Break()
+	public void Break(bool givePoints)
 	{
 		AsteroidManager.main.GenerateChildren(
 			size,
 			transform.position,
 			GetComponent<Collider2D>().bounds.size
 		);
+
+		if (givePoints) ScoreManager.main.AddPoints((4 - size) * 10);
+
 		Destroy(gameObject);
+	}
+
+	public void Break()
+	{
+		Break(true);
 	}
 }

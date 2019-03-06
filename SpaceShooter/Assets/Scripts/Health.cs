@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
             if (!shield.activeSelf)
             {
                 Damage(asteroid.damage);
-                asteroid.Break();
+                asteroid.Break(false);
                 StartCoroutine(ActivateShield());
             }
         }
