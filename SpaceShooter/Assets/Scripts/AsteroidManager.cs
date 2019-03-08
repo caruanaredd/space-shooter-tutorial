@@ -21,6 +21,10 @@ public class AsteroidManager : MonoBehaviour
     // The exclude radius when generating the first set.
     public float excludeRadius = 3f;
 
+    // Used to keep a reference of all the Asteroids in the scene.
+    // We'll pool the objects in a single list.
+    private List<Asteroid> _asteroids = new List<Asteroid>();
+
     private void Awake()
     {
         if (main == null)
@@ -35,11 +39,6 @@ public class AsteroidManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        GenerateBigAsteroids();
-    }
-
     // Will generate the biggest asteroids using the bigAsteroids array.
     public void GenerateBigAsteroids()
     {
@@ -50,6 +49,7 @@ public class AsteroidManager : MonoBehaviour
 
             // Generate the asteroid without a position/rotation.
             Asteroid asteroid = Instantiate<Asteroid>(bigAsteroids[index], transform);
+            _asteroids.Add(asteroid);
 
             // Generate a Vector2 position at random.
             Vector2 pos = Random.insideUnitCircle;
@@ -105,7 +105,26 @@ public class AsteroidManager : MonoBehaviour
         {
             int index = Random.Range(0, asteroids.Length);
             Asteroid asteroid = Instantiate<Asteroid>(asteroids[index], transform);
+            _asteroids.Add(asteroid);
             asteroid.transform.position = position + Random.insideUnitCircle * radius;
         }
+    }
+
+    // Will clear all the registered asteroids in the list.
+    public void Clear()
+    {
+        foreach (Asteroid a in _asteroids)
+        {
+            Destroy(a.gameObject);
+        }
+        _asteroids.Clear();
+    }
+
+    // An asteroid can deregister itself from the list
+    // to avoid removing objects that don't exist when
+    // the game starts.
+    public void DeregisterAsteroid(Asteroid asteroid)
+    {
+        _asteroids.Remove(asteroid);
     }
 }

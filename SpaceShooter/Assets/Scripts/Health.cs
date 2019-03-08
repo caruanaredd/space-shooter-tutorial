@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    // This value is a constant and will never change.
+    private const float maxHealth = 100f;
+
     // This is the player's health.
     [Range(0f, 100f)]
-    public float health = 100f;
+    public float health = maxHealth;
 
     // We'll use a reference to the shield slider to show health.
     public ShieldSlider shieldSlider;
@@ -16,12 +19,6 @@ public class Health : MonoBehaviour
 
     // How long will the shield be active for in seconds?
     public float shieldDuration = 1f;
-
-    private void Start()
-    {
-        shieldSlider.SetValue(health);
-        StartCoroutine(ActivateShield());
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -38,7 +35,6 @@ public class Health : MonoBehaviour
             {
                 Damage(asteroid.damage);
                 asteroid.Break(false);
-                StartCoroutine(ActivateShield());
             }
         }
     }
@@ -47,6 +43,22 @@ public class Health : MonoBehaviour
     {
         health -= damage;
         shieldSlider.SetValue(health);
+
+        if (health <= 0)
+        {
+            GameManager.main.SetGameState(GameState.GameOverScreen);
+        }
+        else
+        {
+            StartCoroutine(ActivateShield());
+        }
+    }
+
+    public void Revive()
+    {
+        health = maxHealth;
+        shieldSlider.SetValue(health);
+        StartCoroutine(ActivateShield());
     }
 
     // IEnumerators are timers that occupy a different thread to the game.

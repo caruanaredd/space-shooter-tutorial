@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Health))]
 // A class for a Unity GameObject extends from MonoBehaviour.
 // This will enable code to control an object in the scene.
 public class PlayerControls : MonoBehaviour
@@ -25,12 +25,16 @@ public class PlayerControls : MonoBehaviour
 	// A reference to the Rigidbody2D component.
 	private Rigidbody2D _playerRB;
 
+	// A reference to the health script
+	private Health _health;
+
 	// We'll keep the direction as a separate variable.
 	private Vector2 _direction;
-
+	
 	private void Awake()
 	{
 		_playerRB = GetComponent<Rigidbody2D>();
+		_health = GetComponent<Health>();
 	}
 
 	// This function will execute for every frame.
@@ -61,5 +65,20 @@ public class PlayerControls : MonoBehaviour
 	{
 		_playerRB.MovePosition(_playerRB.position
 			+ _direction * speed * Time.deltaTime);
+	}
+
+	// This will turn the player on and off in the scene.
+	public void SetActive(bool active)
+	{
+		_health.enabled = active;
+		enabled = active;
+		gameObject.SetActive(active);
+
+		if (active)
+		{
+			transform.position = Vector2.zero;
+			transform.rotation = Quaternion.identity;
+			_health.Revive();
+		}
 	}
 }
