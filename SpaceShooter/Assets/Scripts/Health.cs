@@ -39,6 +39,14 @@ public class Health : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("k"))
+        {
+            Damage(100);
+        }
+    }
+
     public void Damage(float damage)
     {
         health -= damage;

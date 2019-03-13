@@ -12,11 +12,8 @@ public class AsteroidManager : MonoBehaviour
     // The asteroid templates.
     public Asteroid[] bigAsteroids, mediumAsteroids, smallAsteroids, tinyAsteroids;
 
-    // The number of asteroids to generate when the game starts.
-    public int numAsteroids = 4;
-
-    // The number of children to spawn when the asteroid is destroyed.
-    public int numChildren = 3;
+    // The level data the manager will work with.
+    private LevelSettings _settings;
 
     // The exclude radius when generating the first set.
     public float excludeRadius = 3f;
@@ -42,7 +39,7 @@ public class AsteroidManager : MonoBehaviour
     // Will generate the biggest asteroids using the bigAsteroids array.
     public void GenerateBigAsteroids()
     {
-        for (int i = 0; i < numAsteroids; i++)
+        for (int i = 0; i < _settings.numAsteroids; i++)
         {
             // First, we'll choose a random item from the array.
             int index = Random.Range(0, bigAsteroids.Length);
@@ -76,7 +73,7 @@ public class AsteroidManager : MonoBehaviour
     public void GenerateChildren(int size, Vector2 position, Vector2 radius)
     {
         // check if the size is zero, if so, stop here.
-        if (size <= 0) return;
+        if (size <= _settings.minSize) return;
 
         // this is where we'll store the asteroids to generate.
         Asteroid[] asteroids = new Asteroid[]{ };
@@ -101,7 +98,7 @@ public class AsteroidManager : MonoBehaviour
         }
 
         // Generate the number of asteroids this class has stored.
-        for (int i = 0; i < numChildren; i++)
+        for (int i = 0; i < _settings.numChildren; i++)
         {
             int index = Random.Range(0, asteroids.Length);
             Asteroid asteroid = Instantiate<Asteroid>(asteroids[index], transform);
@@ -126,5 +123,16 @@ public class AsteroidManager : MonoBehaviour
     public void DeregisterAsteroid(Asteroid asteroid)
     {
         _asteroids.Remove(asteroid);
+        if (_asteroids.Count == 0)
+        {
+            GameManager.main.NextLevel();
+        }
+    }
+
+    // Set the new level settings and generate the asteroids.
+    public void SetSettings(LevelSettings settings)
+    {
+        _settings = settings;
+        GenerateBigAsteroids();
     }
 }

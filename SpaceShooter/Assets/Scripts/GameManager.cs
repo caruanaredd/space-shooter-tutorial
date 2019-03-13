@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 // Enumerators - represent states/numbers with keywords
 public enum GameState
@@ -32,8 +33,19 @@ public class GameManager : MonoBehaviour
 
     public GameObject gameOverScreen;
 
+    public TextMeshProUGUI finalScoreText;
+
+    public TextMeshProUGUI levelUIText;
+
     [Header("Player Objects")]
     public PlayerControls playerControls;
+
+    [Header("Level Settings")]
+    public int startingLevel = 1;
+
+    private int _currentLevel;
+
+    public LevelSettings[] settings;
 
     private void Awake()
     {
@@ -53,13 +65,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (settings.Length == 0)
+        {
+            Debug.LogWarning("No settings data was found.");
+            enabled = false;
+            return;
+        }
+
         SetGameState(GameState.TitleScreen);
     }
 
     public void StartGame()
     {
+        _currentLevel = startingLevel;
+        if (_currentLevel > settings.Length) _currentLevel = 1;
+        levelUIText.SetText(string.Format("LV {0}", _currentLevel));
+
         SetGameState(GameState.GameScreen);
-        _asteroidManager.GenerateBigAsteroids();
+        _asteroidManager.SetSettings(settings[_currentLevel - 1]);
     }
 
     public void SetGameState(GameState state)
@@ -79,6 +102,11 @@ public class GameManager : MonoBehaviour
                 titleScreen.SetActive(false);
                 playerControls.SetActive(false);
 
+                finalScoreText.SetText(
+                    string.Format("High Score: {0}\nThis Game: {1}",
+                    _scoreManager.highScore,
+                    _scoreManager.score)
+                );
                 gameOverScreen.SetActive(true);
                 break;
 
@@ -87,12 +115,22 @@ public class GameManager : MonoBehaviour
                 gameOverScreen.SetActive(false);
 
                 _asteroidManager.Clear();
+                _scoreManager.Clear();
                 gameUI.SetActive(true);
                 playerControls.SetActive(true);
                 break;
         }
 
         _state = state;
+    }
+
+    public void NextLevel()
+    {
+        _currentLevel++;
+        if (_currentLevel > settings.Length) _currentLevel = 1;
+        levelUIText.SetText(string.Format("LV {0}", _currentLevel));
+        
+        _asteroidManager.SetSettings(settings[_currentLevel - 1]);
     }
 
 }
