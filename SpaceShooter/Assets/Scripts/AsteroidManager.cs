@@ -12,6 +12,9 @@ public class AsteroidManager : MonoBehaviour
     // The asteroid templates.
     public Asteroid[] bigAsteroids, mediumAsteroids, smallAsteroids, tinyAsteroids;
 
+    // The explosion to instantiate when an asteroid breaks.
+    public GameObject explosion;
+
     // The level data the manager will work with.
     private LevelSettings _settings;
 
@@ -120,13 +123,25 @@ public class AsteroidManager : MonoBehaviour
     // An asteroid can deregister itself from the list
     // to avoid removing objects that don't exist when
     // the game starts.
-    public void DeregisterAsteroid(Asteroid asteroid)
+    public void DeregisterAsteroid(Asteroid asteroid, bool explode)
     {
+        // Generate an explosion if this is set to true.
+        if (explode)
+        {
+            Instantiate(explosion, asteroid.transform.position, Quaternion.identity);
+        }
+
         _asteroids.Remove(asteroid);
         if (_asteroids.Count == 0)
         {
             GameManager.main.NextLevel();
         }
+    }
+
+    // An alternate version for DeregisterAsteroid.
+    public void DeregisterAsteroid(Asteroid asteroid)
+    {
+        DeregisterAsteroid(asteroid, false);
     }
 
     // Set the new level settings and generate the asteroids.

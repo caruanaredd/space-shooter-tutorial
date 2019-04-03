@@ -14,13 +14,19 @@ public class Laser : MonoBehaviour
     // A reference to the laser's rigidbody.
     private Rigidbody2D _bulletRB;
 
+    // The audio source attached to this laser.
+    private AudioSource _audioSource;
+
     private void Awake()
     {
         _bulletRB = GetComponent<Rigidbody2D>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
+        _audioSource.pitch = Random.Range(0.7f, 1.3f);
+
         _bulletRB.velocity =
             transform.TransformDirection(Vector2.up) * speed;
         

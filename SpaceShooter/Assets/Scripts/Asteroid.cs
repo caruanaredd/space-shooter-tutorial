@@ -52,7 +52,7 @@ public class Asteroid : MonoBehaviour
 
 		if (givePoints) ScoreManager.main.AddPoints((4 - size) * 10);
 
-		AsteroidManager.main.DeregisterAsteroid(this);
+		AsteroidManager.main.DeregisterAsteroid(this, true);
 		Destroy(gameObject);
 	}
 

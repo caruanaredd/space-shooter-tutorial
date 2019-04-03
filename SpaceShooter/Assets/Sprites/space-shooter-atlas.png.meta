@@ -17,6 +17,11 @@ TextureImporter:
     21300024: TinyAsteroid_2
     21300026: Spaceship_Icon
     21300028: PlayerShield
+    21300030: Explosion_f1
+    21300032: Explosion_f2
+    21300034: Explosion_f3
+    21300036: Explosion_f4
+    21300038: Explosion_f5
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -398,13 +403,113 @@ TextureImporter:
         width: 80
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 92edcf78f21e44c3387f16808f358502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_f1
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 928
+        width: 53
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a024416c52edb499dbb95cae333a9141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_f2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 138
+        width: 72
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef50643f61ce4b02b6ac29a3ab598e1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_f3
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 134
+        width: 80
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f003e0303e6a54b608c12d3f554dd926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_f4
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 79
+        width: 70
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee95ab3c76b084255b075ce696437ed2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Explosion_f5
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 28
+        width: 63
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db7d44499e4ae44a8b79c4880d04d502
       vertices: []
       indices: 
       edges: []

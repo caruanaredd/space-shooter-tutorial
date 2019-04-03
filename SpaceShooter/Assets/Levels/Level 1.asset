@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   numAsteroids: 1
-  numChildren: 1
-  minSize: 3
+  numChildren: 2
+  minSize: 0
